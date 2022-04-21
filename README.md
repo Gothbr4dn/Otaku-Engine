@@ -1,4 +1,4 @@
-# Friday Night Funkin Otaku Pog
+# Friday Night Funkin Otaku Engine
 
 Im Just Bored so i made this engine
 please dont try and make big deal of this i wont make to many updates 
