@@ -152,6 +152,7 @@ class ChartingState extends MusicBeatState
 		var tabs = [
 			{name: "Song", label: 'Song'},
 			{name: "Section", label: 'Section'},
+			{name: "Custom Stuff", label: 'Custom Stuff'},
 			{name: "Note", label: 'Note'}
 		];
 

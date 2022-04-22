@@ -540,49 +540,6 @@ class PlayState extends MusicBeatState
 		                            add(waveSpriteFG);
 		                    */
 		          }
-				  case 'ugh' | 'guns' | 'stress':
-				  {
-					defaultCamZoom = 0.9;
-					curStage = 'warzone';
-					var sky:FlxSprite = new FlxSprite(-400,-400).loadGraphic(Paths.image('warzone/tankSky'));
-					sky.scrollFactor.set(0, 0);
-					sky.antialiasing = true;
-					sky.setGraphicSize(Std.int(sky.width * 1.5));
-
-					add(sky);
-	
-					var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('warzone/tankClouds'));
-					clouds.scrollFactor.set(0.1, 0.1);
-					clouds.velocity.x = FlxG.random.float(5, 15);
-					clouds.antialiasing = true;
-					clouds.updateHitbox();
-
-					add(clouds);
-	
-					var mountains:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('warzone/tankMountains'));
-					mountains.scrollFactor.set(0.2, 0.2);
-					mountains.setGraphicSize(Std.int(1.2 * mountains.width));
-					mountains.updateHitbox();
-					mountains.antialiasing = true;
-
-					add(mountains);
-	
-					var buildings:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('warzone/tankBuildings'));
-					buildings.scrollFactor.set(0.3, 0.3);
-					buildings.setGraphicSize(Std.int(buildings.width * 1.1));
-					buildings.updateHitbox();
-					buildings.antialiasing = true;
-
-					add(buildings);
-	
-					var ruins:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('warzone/tankRuins'));
-					ruins.scrollFactor.set(0.35, 0.35);
-					ruins.setGraphicSize(Std.int(ruins.width * 1.1));
-					ruins.updateHitbox();
-					ruins.antialiasing = true;
-
-					add(ruins);				  
-				  }
 		          default:
 		          {
 		                  defaultCamZoom = 0.9;
@@ -624,8 +581,6 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pixel';
 			case 'schoolEvil':
 				gfVersion = 'gf-pixel';
-			case 'warzone':
-				gfVersion = 'gf-warzone';
 		}
 
 		if (curStage == 'limo')

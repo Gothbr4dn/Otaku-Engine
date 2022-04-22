@@ -79,6 +79,8 @@ class FreeplayState extends MusicBeatState
 		if (StoryMenuState.weekUnlocked[6] || isDebug)
 			addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
 
+		if (StoryMenuState.weekUnlocked[7] || isDebug)
+			addWeek(['ugh', 'guns', 'stress'], 7, ['tankman']);
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
@@ -190,7 +192,7 @@ class FreeplayState extends MusicBeatState
 		if (Math.abs(lerpScore - intendedScore) <= 10)
 			lerpScore = intendedScore;
 
-		scoreText.text = "PERSONAL BEST:" + lerpScore;
+		scoreText.text = "Best Score:" + lerpScore;
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;

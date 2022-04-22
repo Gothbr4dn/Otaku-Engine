@@ -123,6 +123,19 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 
+			case 'gf-tankmen':
+				frames = Paths.getSparrowAtlas('week7/gfTankmen');
+				animation.addByIndices('sad', 'GF Crying at Gunpoint ', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing at Gunpoint', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing at Gunpoint', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+	
+				addOffset('sad', -2, -21);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+						
+		
+				playAnim('danceRight');
+	
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('DADDY_DEAREST');
@@ -408,6 +421,31 @@ class Character extends FlxSprite
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 				antialiasing = false;
+				flipX = true;
+			case 'tankman':
+				frames = Paths.getSparrowAtlas('week7/tankman');
+				animation.addByPrefix('idle', "Tankman Idle Dance", 24);
+				animation.addByPrefix('oldSingUP', 'Tankman UP note ', 24, false);
+				animation.addByPrefix('singUP', 'Tankman UP note ', 24, false);
+				animation.addByPrefix('oldSingDOWN', 'Tankman DOWN note ', 24, false);
+				animation.addByPrefix('singDOWN', 'Tankman DOWN note ', 24, false);
+				animation.addByPrefix('singLEFT', 'Tankman Right Note ', 24, false);
+				animation.addByPrefix('singRIGHT', 'Tankman Note Left ', 24, false);
+	
+				animation.addByPrefix('ughAnim', 'TANKMAN UGH', 24, false);
+				animation.addByPrefix('prettyGoodAnim', 'PRETTY GOOD', 24, false);
+				
+				addOffset('idle');
+				addOffset("singUP", 24, 56);
+				addOffset("oldSingUP", 24, 56);
+				addOffset("singRIGHT", -1, -7);
+				addOffset("singLEFT", 100, -14);
+				addOffset("singDOWN", 98, -90);
+				addOffset("oldSingDOWN", 98, -90);
+				//addOffset("ughAnim", 45, 0);
+				addOffset("prettyGoodAnim", 45, 20);
+				playAnim('idle');
+				
 				flipX = true;
 
 			case 'senpai':
