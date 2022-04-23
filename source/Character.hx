@@ -702,7 +702,6 @@ class Character extends FlxSprite
 					danced = !danced;
 				}
 			}
-		}
 	}
 
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
