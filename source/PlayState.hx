@@ -625,7 +625,7 @@ class PlayState extends MusicBeatState
 			case 'schoolEvil':
 				gfVersion = 'gf-pixel';
 			case 'warzone':
-				gfVersion = 'gf-warzone';
+				gfVersion = 'gf-tankmen';
 		}
 
 		if (curStage == 'limo')
