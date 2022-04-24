@@ -97,21 +97,6 @@ class MainMenuState extends MusicBeatState
 				menuItem.scrollFactor.set();
 				menuItem.antialiasing = true;
 
-
-		//GF Menu
-		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
-		gfDance.frames = Paths.getSparrowAtlas('GF_Assets');
-		gfDance.animation.addByIndices('danceLeft', 'GF', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, true);
-		gfDance.antialiasing = true;
-		add(gfDance);
-
-		if(gfDance != null) {
-			danceLeft = !danceLeft;
-
-			if (danceLeft)
-				gfDance.animation.play('danceLeft');
-		}
-
 		//FlxG.camera.follow(camFollow, null, 0.06);
 
 		// NG.core.calls.event.logEvent('swag').send();
