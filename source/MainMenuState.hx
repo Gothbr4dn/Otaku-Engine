@@ -24,6 +24,9 @@ class MainMenuState extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	var logoBl:FlxSprite;
+	var gfDance:FlxSprite;
+	var danceLeft:Bool = false;
 
 	#if !switch
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'options'];
@@ -78,25 +81,39 @@ class MainMenuState extends MusicBeatState
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
-
 		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
 
 		for (i in 0...optionShit.length)
-		{
-			var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
-			menuItem.frames = tex;
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
-			menuItem.animation.play('idle');
-			menuItem.ID = i;
-			//menuItem.screenCenter(X);
-			menuItem.x += 50;
-			menuItems.add(menuItem);
-			menuItem.scrollFactor.set();
-			menuItem.antialiasing = true;
+			{
+				var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
+				menuItem.frames = tex;
+				menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+				menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+				menuItem.animation.play('idle');
+				menuItem.ID = i;
+				//menuItem.screenCenter(X);
+				menuItem.x += 50;
+				menuItems.add(menuItem);
+				menuItem.scrollFactor.set();
+				menuItem.antialiasing = true;
+
+
+		//GF Menu
+		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
+		gfDance.frames = Paths.getSparrowAtlas('GF_Assets');
+		gfDance.animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, true);
+		//gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		gfDance.antialiasing = true;
+		add(gfDance);
+
+		if(gfDance != null) {
+			danceLeft = !danceLeft;
+
+			if (danceLeft)
+				gfDance.animation.play('danceLeft');
 		}
 
-		FlxG.camera.follow(camFollow, null, 0.06);
+		//FlxG.camera.follow(camFollow, null, 0.06);
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -104,6 +121,7 @@ class MainMenuState extends MusicBeatState
 
 		super.create();
 	}
+}
 
 	var selectedSomethin:Bool = false;
 
@@ -181,7 +199,7 @@ class MainMenuState extends MusicBeatState
 									case 'options':
 										FlxTransitionableState.skipNextTransIn = true;
 										FlxTransitionableState.skipNextTransOut = true;
-										FlxG.switchState(new OptionsMenu());
+										FlxG.switchState(new OptionsSubState());
 								}
 							});
 						}
