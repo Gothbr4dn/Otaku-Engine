@@ -696,148 +696,146 @@ class PlayState extends MusicBeatState
 
 						}
 						case 'stress':
-							{
-								defaultCamZoom = 0.85;
+						{
+							defaultCamZoom = 0.85;
 
-								picoStep = Json.parse(openfl.utils.Assets.getText(Paths.json('stress/picospeaker')));
+							curStage = 'warzone-stress';
+							var sky:FlxSprite = new FlxSprite(-400,-400).loadGraphic(Paths.image('warzone/tankSky'));
+							sky.scrollFactor.set(0, 0);
+							sky.antialiasing = true;
+							sky.setGraphicSize(Std.int(sky.width * 1.5));
 
-								curStage = 'warzone-stress';
-								var sky:FlxSprite = new FlxSprite(-400,-400).loadGraphic(Paths.image('warzone/tankSky'));
-								sky.scrollFactor.set(0, 0);
-								sky.antialiasing = true;
-								sky.setGraphicSize(Std.int(sky.width * 1.5));
-
-								add(sky);
+							add(sky);
 				
-								var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('warzone/tankClouds'));
-								clouds.scrollFactor.set(0.1, 0.1);
-								clouds.velocity.x = FlxG.random.float(5, 15);
-								clouds.antialiasing = true;
-								clouds.updateHitbox();
+							var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('warzone/tankClouds'));
+							clouds.scrollFactor.set(0.1, 0.1);
+							clouds.velocity.x = FlxG.random.float(5, 15);
+							clouds.antialiasing = true;
+							clouds.updateHitbox();
 
-								add(clouds);
+							add(clouds);
 				
-								var mountains:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('warzone/tankMountains'));
-								mountains.scrollFactor.set(0.2, 0.2);
-								mountains.setGraphicSize(Std.int(1.2 * mountains.width));
-								mountains.updateHitbox();
-								mountains.antialiasing = true;
+							var mountains:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('warzone/tankMountains'));
+							mountains.scrollFactor.set(0.2, 0.2);
+							mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+							mountains.updateHitbox();
+							mountains.antialiasing = true;
 
-								add(mountains);
+							add(mountains);
 				
-								var buildings:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('warzone/tankBuildings'));
-								buildings.scrollFactor.set(0.3, 0.3);
-								buildings.setGraphicSize(Std.int(buildings.width * 1.1));
-								buildings.updateHitbox();
-								buildings.antialiasing = true;
+							var buildings:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('warzone/tankBuildings'));
+							buildings.scrollFactor.set(0.3, 0.3);
+							buildings.setGraphicSize(Std.int(buildings.width * 1.1));
+							buildings.updateHitbox();
+							buildings.antialiasing = true;
 
-								add(buildings);
+							add(buildings);
 				
-								var ruins:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('warzone/tankRuins'));
-								ruins.scrollFactor.set(0.35, 0.35);
-								ruins.setGraphicSize(Std.int(ruins.width * 1.1));
-								ruins.updateHitbox();
-								ruins.antialiasing = true;
+							var ruins:FlxSprite = new FlxSprite(-200,0).loadGraphic(Paths.image('warzone/tankRuins'));
+							ruins.scrollFactor.set(0.35, 0.35);
+							ruins.setGraphicSize(Std.int(ruins.width * 1.1));
+							ruins.updateHitbox();
+							ruins.antialiasing = true;
 
-								add(ruins);
+							add(ruins);
 				
 
-								var smokeLeft:FlxSprite = new FlxSprite(-200,-100);
-								smokeLeft.frames = Paths.getSparrowAtlas('warzone/smokeLeft');
-								smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft ', 24, true);
-								smokeLeft.scrollFactor.set(0.4, 0.4);
-								smokeLeft.antialiasing = true;
-								smokeLeft.animation.play('idle');
+							var smokeLeft:FlxSprite = new FlxSprite(-200,-100);
+							smokeLeft.frames = Paths.getSparrowAtlas('warzone/smokeLeft');
+							smokeLeft.animation.addByPrefix('idle', 'SmokeBlurLeft ', 24, true);
+							smokeLeft.scrollFactor.set(0.4, 0.4);
+							smokeLeft.antialiasing = true;
+							smokeLeft.animation.play('idle');
 								
-								add(smokeLeft);
+							add(smokeLeft);
 				
-								var smokeRight:FlxSprite = new FlxSprite(1100,-100);
-								smokeRight.frames = Paths.getSparrowAtlas('warzone/smokeRight');
-								smokeRight.animation.addByPrefix('idle', 'SmokeRight ', 24, true);
-								smokeRight.scrollFactor.set(0.4, 0.4);
-								smokeRight.antialiasing = true;
-								smokeRight.animation.play('idle');
+							var smokeRight:FlxSprite = new FlxSprite(1100,-100);
+							smokeRight.frames = Paths.getSparrowAtlas('warzone/smokeRight');
+							smokeRight.animation.addByPrefix('idle', 'SmokeRight ', 24, true);
+							smokeRight.scrollFactor.set(0.4, 0.4);
+							smokeRight.antialiasing = true;
+							smokeRight.animation.play('idle');
 								
-								add(smokeRight);
+							add(smokeRight);
 
-								tower = new FlxSprite(100, 120);
-								tower.frames = Paths.getSparrowAtlas('warzone/tankWatchtower');
-								tower.animation.addByPrefix('idle', 'watchtower gradient color', 24, false);
-								tower.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tower);
-								}
+							tower = new FlxSprite(100, 120);
+							tower.frames = Paths.getSparrowAtlas('warzone/tankWatchtower');
+							tower.animation.addByPrefix('idle', 'watchtower gradient color', 24, false);
+							tower.antialiasing = true;
+							if(FlxG.save.data.distractions){
+								add(tower);
+							}
 								
-								tankRolling = new FlxSprite(300,300);
-								tankRolling.frames = Paths.getSparrowAtlas('tankRolling');
-								tankRolling.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
-								tankRolling.scrollFactor.set(0.5, 0.5);
-								tankRolling.antialiasing = true;
-								tankRolling.animation.play('idle');
-								add(tankRolling);
+							tankRolling = new FlxSprite(300,300);
+							tankRolling.frames = Paths.getSparrowAtlas('tankRolling');
+							tankRolling.animation.addByPrefix('idle', 'BG tank w lighting ', 24, true);
+							tankRolling.scrollFactor.set(0.5, 0.5);
+							tankRolling.antialiasing = true;
+							tankRolling.animation.play('idle');
+							add(tankRolling);
 				
-								var ground:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('warzone/tankGround'));
-								ground.scrollFactor.set();
-								ground.antialiasing = true;
-								ground.setGraphicSize(Std.int(ground.width * 1.15));
-								ground.scrollFactor.set(1, 1);
+							var ground:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('warzone/tankGround'));
+							ground.scrollFactor.set();
+							ground.antialiasing = true;
+							ground.setGraphicSize(Std.int(ground.width * 1.15));
+							ground.scrollFactor.set(1, 1);
 
-								ground.updateHitbox();
-								add(ground);
+							ground.updateHitbox();
+							add(ground);
 				
-								tankBop1 = new FlxSprite(-500,650);
-								tankBop1.frames = Paths.getSparrowAtlas('warzone/tank0');
-								tankBop1.animation.addByPrefix('bop', 'fg tankhead far right instance 1', 24);
-								tankBop1.scrollFactor.set(1.7, 1.5);
-								tankBop1.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tankBop1);
-								}
+							tankBop1 = new FlxSprite(-500,650);
+							tankBop1.frames = Paths.getSparrowAtlas('warzone/tank0');
+							tankBop1.animation.addByPrefix('bop', 'fg tankhead far right instance 1', 24);
+							tankBop1.scrollFactor.set(1.7, 1.5);
+							tankBop1.antialiasing = true;
+							if(FlxG.save.data.distractions){
+								add(tankBop1);
+							}
 				
-								tankBop2 = new FlxSprite(-300,750);
-								tankBop2.frames = Paths.getSparrowAtlas('warzone/tank1');
-								tankBop2.animation.addByPrefix('bop','fg tankhead 5 instance 1', 24);
-								tankBop2.scrollFactor.set(2.0, 0.2);
-								tankBop2.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tankBop2);
-								}
+							tankBop2 = new FlxSprite(-300,750);
+							tankBop2.frames = Paths.getSparrowAtlas('warzone/tank1');
+							tankBop2.animation.addByPrefix('bop','fg tankhead 5 instance 1', 24);
+							tankBop2.scrollFactor.set(2.0, 0.2);
+							tankBop2.antialiasing = true;
+							if(FlxG.save.data.distractions){
+								add(tankBop2);
+							}
 				
-								tankBop3 = new FlxSprite(450,940);
-								tankBop3.frames = Paths.getSparrowAtlas('warzone/tank2');
-								tankBop3.animation.addByPrefix('bop','foreground man 3 instance 1', 24);
-								tankBop3.scrollFactor.set(1.5, 1.5);
-								tankBop3.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tankBop3);
-								}
+							tankBop3 = new FlxSprite(450,940);
+							tankBop3.frames = Paths.getSparrowAtlas('warzone/tank2');
+							tankBop3.animation.addByPrefix('bop','foreground man 3 instance 1', 24);
+							tankBop3.scrollFactor.set(1.5, 1.5);
+							tankBop3.antialiasing = true;
+							if(FlxG.save.data.distractions){
+								add(tankBop3);
+							}
 				
-								tankBop4 = new FlxSprite(1300,1200);
-								tankBop4.frames = Paths.getSparrowAtlas('warzone/tank3');
-								tankBop4.animation.addByPrefix('bop','fg tankhead 4 instance 1', 24);
-								tankBop4.scrollFactor.set(3.5, 2.5);
-								tankBop4.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tankBop4);
-								}
+							tankBop4 = new FlxSprite(1300,1200);
+							tankBop4.frames = Paths.getSparrowAtlas('warzone/tank3');
+							tankBop4.animation.addByPrefix('bop','fg tankhead 4 instance 1', 24);
+							tankBop4.scrollFactor.set(3.5, 2.5);
+							tankBop4.antialiasing = true;
+							if(FlxG.save.data.distractions){
+								add(tankBop4);
+							}
 				
-								tankBop5 = new FlxSprite(1300,900);
-								tankBop5.frames = Paths.getSparrowAtlas('warzone/tank4');
-								tankBop5.animation.addByPrefix('bop','fg tankman bobbin 3 instance 1', 24);
-								tankBop5.scrollFactor.set(1.5, 1.5);
-								tankBop5.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tankBop5);
-								}
+							tankBop5 = new FlxSprite(1300,900);
+							tankBop5.frames = Paths.getSparrowAtlas('warzone/tank4');
+							tankBop5.animation.addByPrefix('bop','fg tankman bobbin 3 instance 1', 24);
+							tankBop5.scrollFactor.set(1.5, 1.5);
+		     				tankBop5.antialiasing = true;
+							if(FlxG.save.data.distractions){
+					    		add(tankBop5);
+							}
 				
-								tankBop6 = new FlxSprite(1620,700);
-								tankBop6.frames = Paths.getSparrowAtlas('warzone/tank5');
-								tankBop6.animation.addByPrefix('bop','fg tankhead far right instance 1', 24);
-								tankBop6.scrollFactor.set(1.5, 1.5);
-								tankBop6.antialiasing = true;
-								if(FlxG.save.data.distractions){
-									add(tankBop6);
-								}
+							tankBop6 = new FlxSprite(1620,700);
+							tankBop6.frames = Paths.getSparrowAtlas('warzone/tank5');
+							tankBop6.animation.addByPrefix('bop','fg tankhead far right instance 1', 24);
+							tankBop6.scrollFactor.set(1.5, 1.5);
+							tankBop6.antialiasing = true;
+							if(FlxG.save.data.distractions){
+								add(tankBop6);
+							}
 	}
 		          default:
 		          {

@@ -442,7 +442,7 @@ class Character extends FlxSprite
 				addOffset("singLEFT", 100, -14);
 				addOffset("singDOWN", 98, -90);
 				addOffset("oldSingDOWN", 98, -90);
-				addOffset("ughAnim", 45, 0);
+				//addOffset("ughAnim", 45, 0);
 				addOffset("prettyGoodAnim", 45, 20);
 				playAnim('idle');
 				
@@ -534,6 +534,51 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
+
+				case 'bf-holding-gf':
+				
+					frames = Paths.getSparrowAtlas('bfAndGF');
+					animation.addByPrefix('idle', 'BF idle dance w gf0', 24, false);
+					animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+					animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS0', 24, false);
+					animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS0', 24, false);
+	
+					addOffset('idle', 0, 0);
+					addOffset("singUP", -29, 10);
+					addOffset("singRIGHT", -41, 23);
+					addOffset("singLEFT", 12, 7);
+					addOffset("singDOWN", -10, -10);
+					addOffset("singUPmiss", -29, 10);
+					addOffset("singRIGHTmiss", -41, 23);
+					addOffset("singLEFTmiss", 12, 7);
+					addOffset("singDOWNmiss", -10, -10);
+			
+					playAnim('idle');
+		
+					flipX = true;
+		
+		
+				case 'bf-holding-gf-DEAD':
+	
+					frames = Paths.getSparrowAtlas('bfHoldingGF-DEAD');
+					animation.addByPrefix('singUP', "BF Dies with GF", 24, false);
+					animation.addByPrefix('firstDeath', "BF Dies with GF", 24, false);
+					animation.addByPrefix('deathLoop', "BF Dead with GF Loop", 24, true);
+					animation.addByPrefix('deathConfirm', "RETRY confirm holding gf", 24, false);
+					animation.play('firstDeath');
+	
+					addOffset('firstDeath');
+					addOffset('deathLoop', -37);
+					addOffset('deathConfirm', -37);
+					playAnim('firstDeath');
+	
+					flipX = true;
+	
 		}
 
 		dance();
@@ -644,7 +689,27 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
+				case 'pico-speaker':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+		
+						if (danced)
+							playAnim('idle');
+						else
+							playAnim('idle');
+					}
 
+				case 'gf-tankmen':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+		
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
 				case 'spooky':
 					danced = !danced;
 
@@ -686,22 +751,6 @@ class Character extends FlxSprite
 				danced = !danced;
 			}
 		}
-		if (curCharacter == 'gf-tankmen')
-			{
-				if (AnimName == 'singLEFT')
-				{
-					danced = true;
-				}
-				else if (AnimName == 'singRIGHT')
-				{
-					danced = false;
-				}
-	
-				if (AnimName == 'singUP' || AnimName == 'singDOWN')
-				{
-					danced = !danced;
-				}
-			}
 	}
 
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
