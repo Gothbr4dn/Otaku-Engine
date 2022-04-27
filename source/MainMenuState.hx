@@ -83,6 +83,8 @@ class MainMenuState extends MusicBeatState
 		add(menuItems);
 		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
 
+		var scale:Float = 0.7;
+
 		for (i in 0...optionShit.length)
 			{
 				var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
@@ -91,8 +93,10 @@ class MainMenuState extends MusicBeatState
 				menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 				menuItem.animation.play('idle');
 				menuItem.ID = i;
+				menuItem.scale.x = scale;
+				menuItem.scale.y = scale;
 				//menuItem.screenCenter(X);
-				menuItem.x += 50;
+				menuItem.x += 45;
 				menuItems.add(menuItem);
 				menuItem.scrollFactor.set();
 				menuItem.antialiasing = true;
@@ -177,13 +181,10 @@ class MainMenuState extends MusicBeatState
 										trace("Story Menu Selected");
 									case 'freeplay':
 										FlxG.switchState(new FreeplayState());
-
 										trace("Freeplay Menu Selected");
-
 									case 'options':
-										FlxTransitionableState.skipNextTransIn = true;
-										FlxTransitionableState.skipNextTransOut = true;
-										FlxG.switchState(new OptionsSubState());
+										LoadingState.loadAndSwitchState(new OptionsSubState());
+										trace("Options Menu Selected");
 								}
 							});
 						}
